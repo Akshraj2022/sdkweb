@@ -86,42 +86,22 @@
         }
 
         .btn-nav {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 1.25rem;
             font-family: var(--font-mono);
-            font-size: 0.8rem;
-            font-weight: 600;
             text-transform: uppercase;
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: var(--fg);
+            color: var(--bg);
+            border-radius: 0;
+            border: 1px solid var(--fg);
             text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: transform 0.2s;
-            background: #ffffff;
-        }
-
-        .btn-nav::before {
-            content: '';
-            position: absolute;
-            top: -100%; left: -100%; width: 300%; height: 300%;
-            background: conic-gradient(from 0deg, #ffffff, #eeeeee, #cccccc, #aaaaaa, #cccccc, #eeeeee, #ffffff);
-            animation: spinSoftly 8s linear infinite;
-            z-index: 0;
-            filter: blur(15px);
-        }
-
-        .btn-nav span {
-            position: relative;
-            z-index: 1;
-            color: transparent;
-            -webkit-text-stroke: 1px #777777;
-            letter-spacing: 1px;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
         .btn-nav:hover {
-            transform: scale(1.02);
+            background: transparent;
+            color: var(--fg);
         }
 
         /* Layout Architecture (Dashed Grid) */
@@ -440,7 +420,7 @@
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#docs">Documentation</a>
-            <a href="https://cal.com/aksh-raj-fa2vgm" target="_blank" class="btn-nav"><span>Book Demo</span></a>
+            <a href="https://cal.com/aksh-raj-fa2vgm" target="_blank" class="btn-nav">Book Demo</a>
         </div>
     </nav>
 
@@ -529,6 +509,11 @@
                         <p>Built-in, optimized presets for avatars, feeds, and banners out of the box.</p>
                     </div>
                 </div>
+            </section>
+
+            <section id="demo" class="section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6rem 0;">
+                <h2 class="section-title" style="margin-bottom: 2rem;">Ready to optimize?</h2>
+                <a href="https://cal.com/aksh-raj-fa2vgm" target="_blank" class="btn-nav" style="font-size: 1rem; padding: 1rem 2rem;">Initialize Demo</a>
             </section>
 
             <footer>
