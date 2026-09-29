@@ -498,34 +498,9 @@
 
             <section id="demo" class="section">
                 <h2 class="section-title">Initialize Demo</h2>
-                <div class="form-container">
-                    <div id="successMsg" class="success-msg">
-                        > Demo requested successfully. Aksh will reach out shortly.
-                    </div>
-                    
-                    <form id="demoForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required placeholder="name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Work Email</label>
-                            <input type="email" id="email" name="email" required placeholder="name@company.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="company">Company Website</label>
-                            <input type="url" id="company" name="company" placeholder="https://">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="time">Preferred Time</label>
-                            <input type="datetime-local" id="time" name="time" required>
-                        </div>
-
-                        <button type="submit" class="btn-submit">Execute Request</button>
-                    </form>
+                <div class="form-container" style="padding: 1rem;">
+                    <!-- Cal.com inline embed container -->
+                    <div id="cal-embed" style="width:100%;height:600px;overflow:scroll;background:transparent;"></div>
                 </div>
             </section>
 
@@ -606,42 +581,25 @@
         resize();
         draw();
 
-        // Form handling
-        document.getElementById('demoForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerText;
-            btn.innerText = "EXECUTING...";
-            btn.disabled = true;
+        // Cal.com Embed
+        (function (C, A, L) { let p = function (a, ar) { a.q.push([ar, a]); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = cal.ns[namespace] || api) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        Cal("init", {origin:"https://cal.com"});
 
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                company: document.getElementById('company').value,
-                time: document.getElementById('time').value
-            };
+        Cal("inline", {
+            elementOrSelector: "#cal-embed",
+            calLink: "aksh-raj-fa2vgm",
+            layout: "month_view"
+        });
 
-            try {
-                const response = await fetch('/api/book-demo', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-
-                if (response.ok) {
-                    document.getElementById('demoForm').style.display = 'none';
-                    document.getElementById('successMsg').style.display = 'block';
-                } else {
-                    alert('Error executing request.');
-                    btn.innerText = originalText;
-                    btn.disabled = false;
+        Cal("ui", {
+            "styles": {
+                "branding": {
+                    "brandColor": "#ffffff"
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('demoForm').style.display = 'none';
-                document.getElementById('successMsg').style.display = 'block';
-            }
+            },
+            "hideEventTypeDetails": true,
+            "layout": "month_view",
+            "theme": "dark"
         });
     </script>
 </body>
