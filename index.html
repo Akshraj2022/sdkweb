@@ -277,14 +277,17 @@
             margin-bottom: 3rem;
         }
 
-        .grid-2 {
+        .grid-2, .grid-3 {
             display: grid;
-            grid-template-columns: 1fr;
             gap: 2rem;
         }
+
+        .grid-2 { grid-template-columns: 1fr; }
+        .grid-3 { grid-template-columns: 1fr; }
         
         @media (min-width: 768px) {
             .grid-2 { grid-template-columns: 1fr 1fr; }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
         }
 
         .card {
@@ -393,10 +396,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            padding: 1.5rem;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 1rem 3rem;
             font-family: var(--font-mono);
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
             text-transform: uppercase;
             text-decoration: none;
@@ -404,21 +408,24 @@
             overflow: hidden;
             border: 1px solid var(--border);
             transition: transform 0.2s;
+            background: #ffffff;
         }
 
         .gradient-btn::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(110deg, #000000, #333333, #888888, #ffffff, #888888, #333333, #000000);
-            background-size: 300% 300%;
-            animation: gradientMove 4s ease infinite;
-            z-index: -1;
+            top: -100%; left: -100%; width: 300%; height: 300%;
+            background: conic-gradient(from 0deg, #ffffff, #eeeeee, #cccccc, #aaaaaa, #cccccc, #eeeeee, #ffffff);
+            animation: spinSoftly 8s linear infinite;
+            z-index: 0;
+            filter: blur(15px);
         }
 
         .gradient-btn span {
-            mix-blend-mode: difference;
-            color: #ffffff;
+            position: relative;
+            z-index: 1;
+            color: transparent;
+            -webkit-text-stroke: 1.5px #777777;
             letter-spacing: 2px;
         }
 
@@ -426,10 +433,9 @@
             transform: scale(1.02);
         }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes spinSoftly {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         footer {
@@ -524,17 +530,17 @@
 
             <section class="section">
                 <h2 class="section-title">Features built for scale</h2>
-                <div class="grid-2">
-                    <div class="card" style="border: none; border-top: 1px solid var(--border); padding-left: 0; padding-right: 0;">
-                        <h3 style="border: none;">Slash Cloud Bills</h3>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Slash Cloud Bills</h3>
                         <p>Smaller files mean you pay drastically less for cloud storage and egress bandwidth. Pennies instead of thousands.</p>
                     </div>
-                    <div class="card" style="border: none; border-top: 1px solid var(--border); padding-left: 0; padding-right: 0;">
-                        <h3 style="border: none;">Privacy by Default</h3>
+                    <div class="card">
+                        <h3>Privacy by Default</h3>
                         <p>We automatically strip hidden EXIF location data from camera photos right on the device to keep your users safe.</p>
                     </div>
-                    <div class="card" style="border: none; border-top: 1px solid var(--border); padding-left: 0; padding-right: 0;">
-                        <h3 style="border: none;">Zero Config</h3>
+                    <div class="card">
+                        <h3>Zero Config</h3>
                         <p>Built-in, optimized presets for avatars, feeds, and banners out of the box.</p>
                     </div>
                 </div>
