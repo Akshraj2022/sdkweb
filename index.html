@@ -86,15 +86,42 @@
         }
 
         .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1.25rem;
             font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            padding: 0.5rem 1rem;
-            background: var(--fg);
-            color: var(--bg);
-            border-radius: 4px;
             text-decoration: none;
-            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+            background: #ffffff;
+        }
+
+        .btn-nav::before {
+            content: '';
+            position: absolute;
+            top: -100%; left: -100%; width: 300%; height: 300%;
+            background: conic-gradient(from 0deg, #ffffff, #eeeeee, #cccccc, #aaaaaa, #cccccc, #eeeeee, #ffffff);
+            animation: spinSoftly 8s linear infinite;
+            z-index: 0;
+            filter: blur(15px);
+        }
+
+        .btn-nav span {
+            position: relative;
+            z-index: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px #777777;
+            letter-spacing: 1px;
+        }
+
+        .btn-nav:hover {
+            transform: scale(1.02);
         }
 
         /* Layout Architecture (Dashed Grid) */
@@ -391,48 +418,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Animated Redirect Button */
-        .gradient-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: fit-content;
-            margin: 0 auto;
-            padding: 1rem 3rem;
-            font-family: var(--font-mono);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: transform 0.2s;
-            background: #ffffff;
-        }
-
-        .gradient-btn::before {
-            content: '';
-            position: absolute;
-            top: -100%; left: -100%; width: 300%; height: 300%;
-            background: conic-gradient(from 0deg, #ffffff, #eeeeee, #cccccc, #aaaaaa, #cccccc, #eeeeee, #ffffff);
-            animation: spinSoftly 8s linear infinite;
-            z-index: 0;
-            filter: blur(15px);
-        }
-
-        .gradient-btn span {
-            position: relative;
-            z-index: 1;
-            color: transparent;
-            -webkit-text-stroke: 1.5px #777777;
-            letter-spacing: 2px;
-        }
-
-        .gradient-btn:hover {
-            transform: scale(1.02);
-        }
-
         @keyframes spinSoftly {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -455,7 +440,7 @@
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#docs">Documentation</a>
-            <a href="#demo" class="btn-nav">Book Demo</a>
+            <a href="https://cal.com/aksh-raj-fa2vgm" target="_blank" class="btn-nav"><span>Book Demo</span></a>
         </div>
     </nav>
 
@@ -546,17 +531,8 @@
                 </div>
             </section>
 
-            <section id="demo" class="section">
-                <h2 class="section-title">Initialize Demo</h2>
-                <div class="form-container" style="padding: 1rem;">
-                    <a href="https://cal.com/aksh-raj-fa2vgm" target="_blank" class="gradient-btn">
-                        <span>Initialize Demo</span>
-                    </a>
-                </div>
-            </section>
-
             <footer>
-                <p>Hikaru Labs &copy; 2026. Open Source MIT License.</p>
+                <p>Hikaru Labs &copy; 2026. All Rights Reserved.</p>
             </footer>
 
         </div>
